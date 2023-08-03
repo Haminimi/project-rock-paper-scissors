@@ -10,10 +10,9 @@ paperButton.addEventListener('click', () => playRound('Paper'));
 scissorsButton.addEventListener('click', () => playRound('Scissors'));
 
 
-const elements = ['Rock', 'Paper', 'Scissors'];
-function getComputerChoice(elements) {
-    const random = Math.floor(Math.random() * elements.length);
-    return elements[random];
+function getComputerSelection() {
+    const choices = ['Rock', 'Paper', 'Scissors'];
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
 
