@@ -1,62 +1,26 @@
-const elements = ['Rock', 'Paper', 'Scissors'];
+const rockButton = document.getElementById('Rock');
+const paperButton = document.getElementById('Paper');
+const scissorsButton = document.getElementById('Scissors');
+const resultsDiv = document.getElementById('results');
+const scorePara = document.getElementById('scorePara');
+const winner = document.getElementById('winner');
 
+const elements = ['Rock', 'Paper', 'Scissors'];
 function getComputerChoice(elements) {
     const random = Math.floor(Math.random() * elements.length);
     return elements[random];
 }
 
-
-function playRound(playerChoice, computerChoice) {
-    if (playerChoice === computerChoice) {
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
       return 'It\'s a tie!';
     } else if (
-      (playerChoice === 'rock' && computerChoice === 'scissors') ||
-      (playerChoice === 'paper' && computerChoice === 'rock') ||
-      (playerChoice === 'scissors' && computerChoice === 'paper')
+      (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+      (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+      (playerSelection === 'Scissors' && computerSelection === 'Paper')
     ) {
-      return `You win! ${playerChoice} beats ${computerChoice}.`;
+      return `You win! ${playerSelection} beats ${computerSelection}.`;
     } else {
-      return `You lose! ${computerChoice} beats ${playerChoice}.`;
+      return `You lose! ${computerSelection} beats ${playerSelection}.`;
     }
   }
-
-  
-
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for (let round = 1; round <=5; round++) {
-        const playerSelection = prompt('Rock, Paper or Scissors? ');
-
-        if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
-            console.log('Invalid choice. Please choose again.');
-            round--;
-            continue;
-        }
-
-        const computerSelection = getComputerChoice(elements);
-        console.log(`Computer chooses: ${computerSelection}`);
-
-        const result = playRound(playerSelection, computerSelection);
-        console.log(result);
-
-        if (result.includes('win')) {
-            playerScore++;
-        }   else if (result.includes('lose')) {
-            computerScore++;
-        }
-    }
-
-    console.log(`Final score - You: ${playerScore}, Computer: ${computerScore}`);
-
-    if (playerScore > computerScore) {
-        console.log('Congratulations! You are the winner!');
-    }   else if (playerScore < computerScore) {
-        console.log('You lost! Better luck next time.');
-    }   else {
-        console.log('It\'s a tie! The game ends in a draw.')
-    }
-}
-
-game();
