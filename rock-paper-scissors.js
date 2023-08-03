@@ -11,16 +11,30 @@ function getComputerChoice(elements) {
     return elements[random];
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    const computerSelection = getComputerSelection();
+    const result = determineWinner(playerSelection, computerSelection);
+    updateResults(result);
+}
+
+function updateResults(result) {
+    resultsDiv.textContent = `${result}\n`;
+}
+
+function determineWinner(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-      return 'It\'s a tie!';
+        return 'It\'s a tie!';
     } else if (
-      (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
-      (playerSelection === 'Paper' && computerSelection === 'Rock') ||
-      (playerSelection === 'Scissors' && computerSelection === 'Paper')
+        (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+        (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+        (playerSelection === 'Scissors' && computerSelection === 'Paper')
     ) {
-      return `You win! ${playerSelection} beats ${computerSelection}.`;
+        playerScore++;
+        updateScore();
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
     } else {
-      return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        computerScore++;
+        updateScore();
+        return `You lose! ${computerSelection} beats ${playerSelection}.`;
     }
-  }
+}
